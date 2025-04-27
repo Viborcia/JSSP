@@ -3,19 +3,13 @@
 
 #include <vector>
 #include <string>
-
-struct OperationData {
-    int job_id;         // ID joba
-    int operation_id;   // Numer operacji w jobie
-    int machine_id;     // Na jakiej maszynie
-    int processing_time;// Czas trwania
-};
+#include "OperationSchedule.h"
 
 class JSSPInstance {
 public:
     int liczbaJobow;
     int liczbaMaszyn;
-    std::vector<OperationData> operacje;
+    std::vector<OperationSchedule> operacje;
 
     // Wczytuje instancje z pliku .data
     bool wczytajPlik(const std::string& sciezka);
