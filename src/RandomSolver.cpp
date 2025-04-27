@@ -17,7 +17,7 @@ void RandomSolver::solve(const std::vector<OperationSchedule>& operations, int l
 {
     schedule.clear();
 
-    // 1. Grupujemy operacje po jobach
+    // 1. Grupujemy operacje po jobach - do przmeyslenia 
     std::vector<std::vector<OperationSchedule> > operacjePoJobach;
     operacjePoJobach.resize(liczbaJobow);
 
