@@ -13,13 +13,12 @@ bool JSSPInstance::wczytajPlik(const std::string& sciezka) {
 
     file >> liczbaJobow >> liczbaMaszyn;
 
-    // WAŻNE: usuń znak nowej linii po liczbach
     std::string line;
-    std::getline(file, line);
+    std::getline(file, line); // usuwamy znak nowej linii po liczbach
 
     int jobID = 0;
     while (jobID < liczbaJobow && std::getline(file, line)) {
-        if (line.empty()) continue; // pomijamy puste linie
+        if (line.empty()) continue;
 
         std::istringstream iss(line);
         int maszyna, czas;
@@ -29,10 +28,18 @@ bool JSSPInstance::wczytajPlik(const std::string& sciezka) {
         {
             if (maszyna == -1 && czas == -1) 
             {
-                break; // koniec operacji dla tego joba
+                break;
             }
 
-            operacje.push_back({ jobID, operationID, maszyna, czas });
+            OperationSchedule op;
+            op.job_id = jobID;
+            op.operation_id = operationID;
+            op.machine_id = maszyna;
+            op.processing_time = czas;
+            op.start_time = 0;
+            op.end_time = 0;
+
+            operacje.push_back(op);
             ++operationID;
         }
         ++jobID;
@@ -41,12 +48,13 @@ bool JSSPInstance::wczytajPlik(const std::string& sciezka) {
     return true;
 }
 
-
 void JSSPInstance::wypiszOperacje() const {
     std::cout << "Liczba Jobow: " << liczbaJobow << ", Liczba Maszyn: " << liczbaMaszyn << "\n";
-    for (const auto& op : operacje) {
-        std::cout << "Job " << op.job_id << ", Operacja " << op.operation_id
+    for (int i = 0; i < operacje.size(); ++i) {
+        const OperationSchedule& op = operacje[i];
+        std::cout << "Job " << op.job_id
+                  << ", Operacja " << op.operation_id
                   << ", Maszyna " << op.machine_id
-                  << ", Czas " << op.processing_time << "\n";
+                  << ", Czas: " << op.processing_time << "\n";
     }
 }

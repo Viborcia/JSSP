@@ -17,11 +17,13 @@ bool SimpleLoader::load(const std::string& filename) {
             int maszyna, czas;
             file >> maszyna >> czas;
 
-            OperationData2 op;
+            OperationSchedule op;
             op.job_id = jobID;
             op.operation_id = opID;
             op.machine_id = maszyna;
             op.processing_time = czas;
+            op.start_time = 0;
+            op.end_time = 0;
 
             operacje.push_back(op);
         }
@@ -33,7 +35,8 @@ bool SimpleLoader::load(const std::string& filename) {
 
 void SimpleLoader::wypisz() const {
     std::cout << "Liczba Jobow: " << liczbaJobow << ", Liczba Maszyn: " << liczbaMaszyn << "\n";
-    for (const auto& op : operacje) {
+    for (int i = 0; i < operacje.size(); ++i) {
+        const OperationSchedule& op = operacje[i];
         std::cout << "Job " << op.job_id
                   << ", Operacja " << op.operation_id
                   << ", Maszyna " << op.machine_id

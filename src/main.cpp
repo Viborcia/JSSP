@@ -1,5 +1,7 @@
 #include "JSSPInstance.h"
 #include "SimpleLoader.h"
+#include "RandomSolver.h"
+
 #include <iostream>
 using namespace std;
 
@@ -10,12 +12,14 @@ int main()
         instancja.wypiszOperacje();
     }*/
 
-    SimpleLoader instancja;
-    if (instancja.load("LA/tai_j10_m10_4.data")) 
-    {
-        instancja.wypisz();
-    }
+    SimpleLoader loader;
+    loader.load("LA/toy.data");
+    loader.wypisz();
 
-    //std::cout<<instancja.liczbaJobow << " <- liczba job, liczba maszyn -> " << instancja.liczbaMaszyn << endl;
+    RandomSolver solver;
+    solver.solve(loader.operacje, loader.liczbaJobow, loader.liczbaMaszyn);
+    solver.printSchedule();
+    
+
     return 0;
 }
