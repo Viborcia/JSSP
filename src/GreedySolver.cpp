@@ -24,8 +24,8 @@ void GreedySolver::solve(const std::vector<OperationSchedule>& operations, int l
 
     while (scheduledOperations < totalOperations) {
         OperationSchedule bestOp;
-      //  int bestTime = std::numeric_limits<int>::max();
-      int bestTime = 0;
+       int bestTime = std::numeric_limits<int>::max();
+      //int bestTime = 0;
         bool found = false;
 
         for (int j = 0; j < liczbaJobow; ++j) {
@@ -34,7 +34,7 @@ void GreedySolver::solve(const std::vector<OperationSchedule>& operations, int l
                 const OperationSchedule& op = jobs[j][opIdx];
                 int readyTime = std::max(machineAvailable[op.machine_id], jobAvailable[j]);
 
-                if (op.processing_time > bestTime) {
+                if (op.processing_time < bestTime) {
                     bestTime = op.processing_time;
                     bestOp = op;
                     found = true;
