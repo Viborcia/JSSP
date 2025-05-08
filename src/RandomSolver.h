@@ -3,6 +3,7 @@
 
 #include "OperationSchedule.h"
 #include <vector>
+#include <string>
 
 class RandomSolver {
 public:
@@ -16,6 +17,9 @@ public:
 
     // Zwraca wartość makespan (maksymalny czas zakończenia operacji)
     int getMakespan() const;
+
+    void zapiszDoCSV(const std::string& nazwaPliku) const;
+
 
 private:
     std::vector<OperationSchedule> schedule; // Lista wykonanych operacji
