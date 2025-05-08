@@ -7,14 +7,10 @@ using namespace std;
 
 int main() 
 {
-
-    /*SimpleLoader loader;
+/*
+    SimpleLoader loader;
     loader.load("LA/toy.data");
     loader.wypisz();
-
-    RandomSolver solver;
-    solver.solve(loader.operacje, loader.liczbaJobow, loader.liczbaMaszyn);
-    solver.printSchedule();
     */
 
     JSSPInstance loader;
@@ -24,6 +20,8 @@ int main()
     RandomSolver solver;
     solver.solve(loader.operacje, loader.liczbaJobow, loader.liczbaMaszyn);
     solver.printSchedule();
+    solver.zapiszDoCSV("harmonogram.csv");
+
 
     return 0;
 }

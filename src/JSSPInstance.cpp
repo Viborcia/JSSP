@@ -11,13 +11,13 @@ bool JSSPInstance::wczytajPlik(const std::string& sciezka) {
         return false;
     }
 
-    file >> liczbaJobow >> liczbaMaszyn;
+    file >> liczbaJobow >> liczbaMaszyn; //zczytywanie job i maszyn 
 
     std::string line;
     std::getline(file, line); // usuwamy znak nowej linii po liczbach
 
     int jobID = 0;
-    while (jobID < liczbaJobow && std::getline(file, line)) {
+    while (jobID < liczbaJobow && std::getline(file, line)) { //kazda linia to job
         if (line.empty()) continue;
 
         std::istringstream iss(line);
@@ -50,7 +50,8 @@ bool JSSPInstance::wczytajPlik(const std::string& sciezka) {
 
 void JSSPInstance::wypiszOperacje() const {
     std::cout << "Liczba Jobow: " << liczbaJobow << ", Liczba Maszyn: " << liczbaMaszyn << "\n";
-    for (int i = 0; i < operacje.size(); ++i) {
+    for (int i = 0; i < operacje.size(); ++i) 
+    {
         const OperationSchedule& op = operacje[i];
         std::cout << "Job " << op.job_id
                   << ", Operacja " << op.operation_id
