@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <map>
 #include <limits>
+#include <fstream>
+
 
 // Konstruktor inicjalizuje makespan na 0
 GreedySolver::GreedySolver() : makespan(0) {}
