@@ -89,3 +89,21 @@ void GreedySolver::printSchedule() const {
 int GreedySolver::getMakespan() const {
     return makespan;
 }
+
+void GreedySolver::zapiszDoCSV(const std::string& nazwaPliku) const
+{
+    std::ofstream out(nazwaPliku);
+    if (!out.is_open()) {
+        std::cerr << "Nie można otworzyć pliku do zapisu: " << nazwaPliku << "\n";
+        return;
+    }
+
+    out << "job_id,operation_id,machine_id,start_time,end_time\n";
+    for (const auto& op : schedule) {
+        out << op.job_id << ","
+            << op.operation_id << ","
+            << op.machine_id << ","
+            << op.start_time << ","
+            << op.end_time << "\n";
+    }
+}
