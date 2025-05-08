@@ -89,7 +89,7 @@ void GreedySolver::printSchedule() const {
 int GreedySolver::getMakespan() const {
     return makespan;
 }
-
+// Funkcja zapisująca algorytm zachłanny do csv
 void GreedySolver::zapiszDoCSV(const std::string& nazwaPliku) const
 {
     std::ofstream out(nazwaPliku);
